@@ -5,7 +5,13 @@ const app = express();
 const port: Number = 3000;
 const enviroment = process.env.NODE_ENV;
 const isProduction = enviroment === "production";
+
+
 app.use("/api", api({}));
+
+
+
+
 if (isProduction) {
     app.use("/", express.static(path.join(__dirname, "../portal/dist")));
     app.get(/.*/, function (_req, res) {
