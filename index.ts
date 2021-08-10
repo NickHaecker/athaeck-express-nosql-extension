@@ -1,18 +1,18 @@
 import express from "express";
 import path from "path";
 import api from "./api/index";
-// import serveStatic  from "serve-static";
 const app = express();
 const port: Number = 3000;
 const enviroment = process.env.NODE_ENV;
 const isProduction = enviroment === "production";
+app.use("/api", api({}));
 if (isProduction) {
-    app.use("/", express.static("/portal/dist"));
+    app.use("/", express.static(path.join(__dirname, "../portal/dist")));
     app.get(/.*/, function (_req, res) {
-        res.sendFile(path.join(__dirname, "/portal/dist/index.html"));
+        res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
     });
 }
-app.use("/api", api({}));
+
 
 
 app.listen( port, () => {
