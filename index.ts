@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import api from "./api/index";
+
 const app = express();
 const port: Number = 3000;
 const enviroment = process.env.NODE_ENV;
