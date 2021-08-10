@@ -30,7 +30,7 @@ const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home_vue_1.default
+        component: Home_vue_1.default,
     },
     {
         path: "/about",
@@ -38,13 +38,13 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => Promise.resolve().then(() => __importStar(require(/* webpackChunkName: "about" */ "../views/About.vue")))
-    }
+        component: () => Promise.resolve().then(() => __importStar(require(/* webpackChunkName: "about" */ "../views/About.vue"))),
+    },
 ];
 const router = new vue_router_1.default({
     mode: "history",
     base: process.env.BASE_URL,
-    routes
+    routes,
 });
 exports.default = router;
 //# sourceMappingURL=index.js.map
