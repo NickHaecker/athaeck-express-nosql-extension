@@ -17,7 +17,7 @@ if (isProduction) {
         res.sendFile(path_1.default.join(__dirname, "../portal/dist/index.html"));
     });
 }
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map
