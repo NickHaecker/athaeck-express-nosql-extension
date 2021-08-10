@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import api from "index";
+import api from "./api/index";
 // import serveStatic  from "serve-static";
 const app = express();
 const port: Number = 3000;
