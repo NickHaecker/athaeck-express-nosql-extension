@@ -18,7 +18,7 @@
         "config": "^3.3.6",
         "express": "^4.17.1",
         "path": "^0.12.7",
-        "serve-static": "^1.14.1",
+        "serve-static": "^1.14.1"
     },
     "devDependencies": {
         "cross-env": "^7.0.3",
