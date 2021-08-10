@@ -3,7 +3,7 @@ import path from "path";
 import api from "./api/index";
 
 const app = express();
-const port: Number = 3000;
+const port = process.env.PORT || 3000;
 const enviroment = process.env.NODE_ENV;
 const isProduction = enviroment === "production";
 
@@ -22,6 +22,6 @@ if (isProduction) {
 
 
 
-app.listen( process.env.PORT || port, () => {
+app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );
 } );

@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const index_1 = __importDefault(require("./api/index"));
 const app = express_1.default();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const enviroment = process.env.NODE_ENV;
 const isProduction = enviroment === "production";
 app.use("/api", index_1.default({}));
@@ -17,7 +17,7 @@ if (isProduction) {
         res.sendFile(path_1.default.join(__dirname, "../portal/dist/index.html"));
     });
 }
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map
