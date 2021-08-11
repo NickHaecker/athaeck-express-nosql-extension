@@ -1,3 +1,0 @@
-[submodule "portal"]
-	path = portal
-	url = git@github.com:NickHaecker/backend-portal.git
