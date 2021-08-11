@@ -13,12 +13,12 @@ const isProduction = enviroment === "production";
 app.use("/api", index_1.default({}));
 console.log(path_1.default.join(__dirname, "../portal/dist"));
 console.log(path_1.default.join(__dirname, "../portal/dist/index.html"));
-if (isProduction) {
-    app.use("/", express_1.default.static(path_1.default.join(__dirname, "../portal/dist")));
-    app.get(/.*/, function (_req, res) {
-        res.sendFile(path_1.default.join(__dirname, "../portal/dist/index.html"));
-    });
-}
+// if (isProduction) {
+app.use("/", express_1.default.static(path_1.default.join(__dirname, "../portal/dist")));
+app.get(/.*/, function (_req, res) {
+    res.sendFile(path_1.default.join(__dirname, "../portal/dist/index.html"));
+});
+// }
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
