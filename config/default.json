@@ -1,0 +1,9 @@
+{
+    "extensions": {
+        "api": [
+
+        ]
+    },
+    "adapter": ["api"]
+
+}
