@@ -45,11 +45,29 @@ class AbstractExpressRoute {
 exports.AbstractExpressRoute = AbstractExpressRoute;
 class AbstractExpressRouter {
     app = express_1.Router();
+    router = [];
     adapter;
-    path;
-    constructor(_path, _adapter) {
-        this.path = _path;
+    constructor(_adapter) {
         this.adapter = _adapter;
+    }
+    intializeRoutes() {
+        for (const route of this.routes) {
+            switch (route.routeTpye) {
+                case ExpressRouteType.GET:
+                    console.log("12", route);
+                    this.app.get(route.route, route.handleRequest);
+                    break;
+                case ExpressRouteType.POST:
+                    this.app.post(route.route, route.handleRequest);
+                    break;
+                case ExpressRouteType.DELETE:
+                    this.app.delete(route.route, route.handleRequest);
+                    break;
+                default:
+                    this.app.put(route.route, route.handleRequest);
+                    break;
+            }
+        }
     }
 }
 exports.AbstractExpressRouter = AbstractExpressRouter;

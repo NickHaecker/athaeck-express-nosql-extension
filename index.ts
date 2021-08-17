@@ -39,14 +39,32 @@ class Application extends AbstractExpressApplication {
     }
 
     public initializeAdapter(): void {
-
-
+        // console.log(this.router)
+        for (const adapter of this.router) {
+            this.app.use(adapter.path, adapter.app);
+            // console.log(this.app)
+        }
     }
     public createAdapter(): void {
-
+        const { adapter } = config as any;
+        for (const adp of adapter) {
+            const adapterClass: any = require(`./${adp}`);
+            if (!adapterClass ) {
+                return;
+            } else {
+                this.router.push(new adapterClass());
+                // console.log(this.router);
+            }
+        }
     }
     public createRoutes(): void {
-        // this.routes.push(new Portal());
+        const classes: any[] = [
+            
+        ]
+        if (classes.length === 0) { return; }
+        for (const cls of classes) {
+            this.routes.push(new cls());
+        }
     }
 
 

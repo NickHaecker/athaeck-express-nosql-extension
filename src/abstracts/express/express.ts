@@ -18,7 +18,7 @@ export abstract class AbstractExpressRoute {
     public route: string;
     public routeTpye: ExpressRouteType;
 
-    constructor(_route:string,_routeType:ExpressRouteType) {
+    constructor(_route: string, _routeType: ExpressRouteType) {
         this.route = _route;
         this.routeTpye = _routeType;
     }
@@ -30,19 +30,37 @@ export abstract class AbstractExpressRouter implements InterfaceExpressClass {
     public app = Router();
  
     abstract routes: AbstractExpressRoute[] = [];
+
+    abstract path: string;
+    protected router: AbstractExpressRouter[] = [];
     protected adapter: string;
 
-    protected path: string;
-
-    constructor(_path: string, _adapter: string) {
-        this.path = _path;
+    constructor(_adapter: string) {
         this.adapter = _adapter;
     }
     
     abstract initializeExtensions(): void;
     
     abstract createRoutes(): void;
-    abstract intializeRoutes(): void;
+    intializeRoutes(): void {
+          for (const route of this.routes) {
+            switch (route.routeTpye) {
+                case ExpressRouteType.GET:
+                    console.log("12", route);
+                    this.app.get(route.route, route.handleRequest);
+                    break;
+                case ExpressRouteType.POST:
+                    this.app.post(route.route, route.handleRequest);
+                    break;
+                case ExpressRouteType.DELETE:
+                    this.app.delete(route.route, route.handleRequest);
+                    break;
+                default:
+                    this.app.put(route.route, route.handleRequest);
+                    break;
+            }
+        }
+    }
 }
 
 export abstract class AbstractExpressApplication implements InterfaceExpressClass {
