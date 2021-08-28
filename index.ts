@@ -15,6 +15,11 @@ import express from "express";
 class AthaeckBackend extends ExpressApplication {
     constructor() {
         super();
+        this.initializeMiddlewares();
+        this.createRoutes();
+        this.intializeRoutes(this._app, this._routes);
+        this.createAdapter(this._router, __dirname);
+        this.initializeAdapter(this._app, this._router);
     }
     createRoutes(): void {
         const classes: any[] = [
@@ -33,68 +38,6 @@ class AthaeckBackend extends ExpressApplication {
         });
     }
 }
-// class Application extends AbstractExpressApplication {
-//     public app: Express = express();
-//     public routes: AbstractExpressRoute[] = [];
 
-//     private enviroment: string | undefined = process.env.NODE_ENV;
-//     private isProduction: boolean;
-
-//     constructor() {
-//         super(process.env.PORT || 3030);
-//         this.isProduction = this.enviroment === "production";
-//         this.initializeMiddlewares();
-//         this.createRoutes();
-//         this.intializeRoutes();
-//         this.createAdapter();
-//         this.initializeAdapter();
-//     }
-
-//     public initializeMiddlewares(): void {
-        // this.app.use(bodyParser.json());
-        // this.app.use("/", express.static(path.join(__dirname, "../portal/dist")));
-        // this.app.get(/.*/, function (_req, res) {
-        // res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
-        // });
-//     }
-
-//     public initializeAdapter(): void {
-//         // console.log(this.router)
-//         for (const adapter of this.router) {
-//             this.app.use(adapter.path, adapter.app);
-//             // console.log(this.app)
-//         }
-//     }
-//     public createAdapter(): void {
-//         const { adapter } = config as any;
-//         for (const adp of adapter) {
-//             const adapterClass: any = require(`./${adp}`);
-//             if (!adapterClass ) {
-//                 return;
-//             } else {
-//                 this.router.push(new adapterClass());
-//                 // console.log(this.router);
-//             }
-//         }
-//     }
-//     public createRoutes(): void {
-        // const classes: any[] = [
-            
-        // ]
-        // if (classes.length === 0) { return; }
-        // for (const cls of classes) {
-        //     this.routes.push(new cls());
-        // }
-//     }
-
-
-//     public main(): void {
-//         const port: string | number = this.port;
-//         this.app.listen(port, () => {
-//             console.log( `server started at http://localhost:${ port }` );
-//         });
-//     }
-
-// }
 
 new AthaeckBackend().main();
