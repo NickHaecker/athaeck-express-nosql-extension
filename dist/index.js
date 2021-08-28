@@ -20,11 +20,11 @@ const express_1 = __importDefault(require("express"));
 class AthaeckBackend extends index_1.ExpressApplication {
     constructor() {
         super();
-        this.initializeMiddlewares();
         this.createRoutes();
-        this.intializeRoutes(this._app, this._routes);
+        this._app = this.intializeRoutes(this._app, this._routes);
         this.createAdapter(this._router, __dirname);
-        this.initializeAdapter(this._app, this._router);
+        this._app = this.initializeAdapter(this._app, this._router);
+        this.initializeMiddlewares();
     }
     createRoutes() {
         const classes = [];
@@ -38,7 +38,7 @@ class AthaeckBackend extends index_1.ExpressApplication {
     initializeMiddlewares() {
         this._app.use(body_parser_1.default.json());
         this._app.use("/", express_1.default.static(path_1.default.join(__dirname, "../portal/dist")));
-        this._app.get(/.*/, function (req, res) {
+        this._app.get(/.*/, function (_req, res) {
             res.sendFile(path_1.default.join(__dirname, "../portal/dist/index.html"));
         });
     }

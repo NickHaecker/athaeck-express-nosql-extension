@@ -45,6 +45,7 @@ class ExpressRoute {
     constructor(route, routeType) {
         this._route = route;
         this._routeType = routeType;
+        console.log(`----requested ${this._route} with method ${this._routeType} ----`);
     }
     get route() {
         return this._route;
@@ -52,8 +53,8 @@ class ExpressRoute {
     get routeType() {
         return this._routeType;
     }
-    handleRequest = (req, res, next) => {
-        res.send(`this is ${this._route}`);
+    handleRequest = (_req, _res, _next) => {
+        makeResponse(_res, 200, `this is ${this._route}`);
     };
 }
 exports.ExpressRoute = ExpressRoute;
@@ -83,7 +84,7 @@ class ExpressRoutingAddon {
 }
 exports.ExpressRoutingAddon = ExpressRoutingAddon;
 class ExpressRouter extends ExpressRoutingAddon {
-    _app = express_1.Router();
+    _app = (0, express_1.Router)();
     _routes = [];
     _router = [];
     _path;
@@ -118,7 +119,7 @@ class ExpressRouter extends ExpressRoutingAddon {
 }
 exports.ExpressRouter = ExpressRouter;
 class ExpressApplication extends ExpressRoutingAddon {
-    _app = express_1.default();
+    _app = (0, express_1.default)();
     _routes = [];
     _router = [];
     _port;

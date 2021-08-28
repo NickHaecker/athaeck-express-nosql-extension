@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const register_service_worker_1 = require("register-service-worker");
 if (process.env.NODE_ENV === "production") {
-    register_service_worker_1.register(`${process.env.BASE_URL}service-worker.js`, {
+    (0, register_service_worker_1.register)(`${process.env.BASE_URL}service-worker.js`, {
         ready() {
             console.log("App is being served from cache by a service worker.\n" +
                 "For more details, visit https://goo.gl/AFskqB");

@@ -39,8 +39,8 @@ const routes = [
         component: () => Promise.resolve().then(() => __importStar(require(/* webpackChunkName: "about" */ "../views/About.vue"))),
     },
 ];
-const router = vue_router_1.createRouter({
-    history: vue_router_1.createWebHistory(process.env.BASE_URL),
+const router = (0, vue_router_1.createRouter)({
+    history: (0, vue_router_1.createWebHistory)(process.env.BASE_URL),
     routes,
 });
 exports.default = router;

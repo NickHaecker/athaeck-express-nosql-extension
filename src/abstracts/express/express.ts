@@ -15,6 +15,7 @@ export class ExpressRoute {
     constructor(route: string, routeType: ExpressRouteType) {
         this._route = route;
         this._routeType = routeType;
+        console.log(`----requested ${this._route} with method ${this._routeType} ----`);
     }
 
     get route(): string {
@@ -25,8 +26,8 @@ export class ExpressRoute {
         return this._routeType;
     }
 
-    handleRequest = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-        res.send(`this is ${this._route}`);
+    handleRequest = (_req: express.Request, _res: express.Response, _next: express.NextFunction) => {
+        makeResponse(_res, 200, `this is ${this._route}`);
     }
 }
 
@@ -115,10 +116,10 @@ export abstract class ExpressApplication extends ExpressRoutingAddon {
     abstract createRoutes(): void;
     abstract initializeMiddlewares(): void;
     initializeAdapter(app: any, router: ExpressRouter[]): any {
-         for (const adapter of router) {
+        for (const adapter of router) {
             app.use(adapter.path, adapter.app);
         }
-         return app;
+        return app;
     }
     createAdapter(router: ExpressRouter[], dir: any): void {
         try {
@@ -136,7 +137,7 @@ export abstract class ExpressApplication extends ExpressRoutingAddon {
                 }
             }
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     }
     main(): void {
