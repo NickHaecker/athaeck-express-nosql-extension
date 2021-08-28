@@ -23,7 +23,7 @@
     },
     "devDependencies": {
         "@types/config": "0.0.39",
-        "@types/node": "^16.6.1",
+        "@types/node": "^16.7.4",
         "cross-env": "^7.0.3",
         "nodemon": "^2.0.12",
         "ts-node": "^10.2.0",

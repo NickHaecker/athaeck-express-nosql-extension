@@ -1,4 +1,4 @@
-import { ExpressClassType, makeResponse, AbstractExpressApplication, InterfaceExpressClass, AbstractExpressRouter, AbstractExpressRoute, ExpressRouteType } from "./express";
+import {ExpressClassType, ExpressRouteType, ExpressRoute, ExpressRoutingAddon, ExpressRouter, ExpressApplication, makeResponse } from "./express";
 
 
 
@@ -10,4 +10,4 @@ import { ExpressClassType, makeResponse, AbstractExpressApplication, InterfaceEx
 
 
 
-export { ExpressClassType, makeResponse, AbstractExpressApplication, InterfaceExpressClass, AbstractExpressRouter, AbstractExpressRoute, ExpressRouteType };
+export { ExpressClassType, ExpressRouteType, ExpressRoute, ExpressRoutingAddon, ExpressRouter, ExpressApplication, makeResponse };
