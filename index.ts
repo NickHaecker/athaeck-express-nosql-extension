@@ -2,16 +2,7 @@ import path from "path";
 import bodyParser from "body-parser";
 import {ExpressApplication} from "./src/abstracts/express/index";
 import express from "express";
-// class Portal extends AbstractExpressRoute {
-//     constructor() {
-//         super("/.*/",ExpressRouteType.GET);
-//         // console.log(this);
-//     }
-//     handleRequest = (_req: express.Request, _res: express.Response) => {
-//         console.log(_req, _res);
-//         _res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
-//     }
-// }
+
 class AthaeckBackend extends ExpressApplication {
     constructor() {
         super();

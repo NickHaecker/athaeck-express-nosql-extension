@@ -7,16 +7,6 @@ const path_1 = __importDefault(require("path"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const index_1 = require("./src/abstracts/express/index");
 const express_1 = __importDefault(require("express"));
-// class Portal extends AbstractExpressRoute {
-//     constructor() {
-//         super("/.*/",ExpressRouteType.GET);
-//         // console.log(this);
-//     }
-//     handleRequest = (_req: express.Request, _res: express.Response) => {
-//         console.log(_req, _res);
-//         _res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
-//     }
-// }
 class AthaeckBackend extends index_1.ExpressApplication {
     constructor() {
         super();

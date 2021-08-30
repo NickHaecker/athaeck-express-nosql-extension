@@ -16,7 +16,7 @@ class ApiAdapter extends ExpressRouter {
         this._app = this.intializeRoutes(this._app, this._routes);
         this._app = this.initializeExtensions(this._app, this._adapter);
     }
-        public createRoutes(): void {
+    public createRoutes(): void {
         const classes: any[] = [
             Api
         ];
