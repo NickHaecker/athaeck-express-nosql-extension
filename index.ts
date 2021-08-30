@@ -25,7 +25,7 @@ class AthaeckBackend extends ExpressApplication {
         this._app.use(bodyParser.json());
         this._app.use("/", express.static(path.join(__dirname, "../portal/dist")));
         this._app.get(/.*/, function (_req, res) {
-        res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
+            res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
         });
     }
 }
