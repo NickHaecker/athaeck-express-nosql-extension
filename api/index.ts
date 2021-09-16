@@ -11,7 +11,7 @@ class Api extends ExpressRoute {
 }
 class ApiAdapter extends ExpressRouter {
     constructor() {
-        super("/api", "api");
+        super("/api/v1", "api");
         this.createRoutes();
         this._app = this.intializeRoutes(this._app, this._routes);
         this._app = this.initializeExtensions(this._app, this._adapter);

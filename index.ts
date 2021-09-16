@@ -14,7 +14,7 @@ class AthaeckBackend extends ExpressApplication {
     }
     createRoutes(): void {
         const classes: any[] = [
-            
+
         ];
         if (classes.length === 0) { return; }
         for (const cls of classes) {
