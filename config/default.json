@@ -1,9 +1,13 @@
 {
     "extensions": {
-        "api": [
-
+        "mongodb": [
+            "backend"
         ]
     },
-    "adapter": ["api"]
-
+    "adapter": ["mongodb"],
+    "mongodb": {
+        "url": "mongodb://localhost:27017",
+        "username": "athaeck",
+        "password": "Q2hpbGxlciMxODkz"
+    }
 }

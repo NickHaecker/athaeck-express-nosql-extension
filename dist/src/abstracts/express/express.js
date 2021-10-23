@@ -26,6 +26,7 @@ exports.makeResponse = exports.ExpressApplication = exports.ExpressRouter = expo
 const express_1 = __importStar(require("express"));
 const config_1 = __importDefault(require("config"));
 const path_1 = __importDefault(require("path"));
+const index_1 = require("./../index");
 var ExpressClassType;
 (function (ExpressClassType) {
     ExpressClassType["APP"] = "APP";
@@ -42,6 +43,7 @@ var ExpressRouteType;
 class ExpressRoute {
     _route;
     _routeType;
+    _plattform = null;
     constructor(route, routeType) {
         this._route = route;
         this._routeType = routeType;
@@ -52,6 +54,9 @@ class ExpressRoute {
     }
     get routeType() {
         return this._routeType;
+    }
+    resolvePlattform(plattform) {
+        return (0, index_1.ResolvePlattform)(plattform);
     }
     handleRequest = (_req, _res, _next) => {
         makeResponse(_res, 200, `this is ${this._route}`);
@@ -104,10 +109,10 @@ class ExpressRouter extends ExpressRoutingAddon {
     get app() {
         return this._app;
     }
-    initializeExtensions(app, adapter) {
+    initializeExtensions(app, adapter, dirname) {
         const extensions = config_1.default.get("extensions");
         for (const extension of extensions[adapter]) {
-            const extClass = require(`./extensions/${extension}`);
+            const extClass = require(`${dirname}/extensions/${extension}`);
             if (!extClass) {
                 break;
             }
@@ -125,7 +130,7 @@ class ExpressApplication extends ExpressRoutingAddon {
     _port;
     constructor() {
         super();
-        this._port = process.env.PORT || 3030;
+        this._port = process.env.PORT || 4040;
     }
     initializeAdapter(app, router) {
         for (const adapter of router) {

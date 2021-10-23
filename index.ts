@@ -1,9 +1,7 @@
-import path from "path";
 import bodyParser from "body-parser";
 import {ExpressApplication} from "./src/abstracts/express/index";
-import express from "express";
 
-class AthaeckBackend extends ExpressApplication {
+class AthaeckMongodbApi extends ExpressApplication {
     constructor() {
         super();
         this.createRoutes();
@@ -23,12 +21,15 @@ class AthaeckBackend extends ExpressApplication {
     }
     initializeMiddlewares(): void {
         this._app.use(bodyParser.json());
-        this._app.use("/", express.static(path.join(__dirname, "../portal/dist")));
-        this._app.get(/.*/, function (_req, res) {
-            res.sendFile(path.join(__dirname, "../portal/dist/index.html"));
-        });
+        this._app.use((_err, _req, _res, _next) => {
+            const { statusCode = 500, message = "" } = _err;
+            _res.status(statusCode).json({
+              code: statusCode,
+              result: message
+            });
+          });
     }
 }
 
 
-new AthaeckBackend().main();
+new AthaeckMongodbApi().main();

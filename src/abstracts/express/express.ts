@@ -1,6 +1,9 @@
 import express, { Router } from "express";
 import config from "config";
 import path from "path";
+import { ResolvePlattform } from "./../index";
+
+
 export enum ExpressClassType {
     APP = "APP", ROUTER = "ROUTER", ROUTE = "ROUTE"
 }
@@ -11,7 +14,7 @@ export enum ExpressRouteType {
 export class ExpressRoute {
     protected _route: string;
     protected _routeType: ExpressRouteType;
-
+    protected _plattform: any | null = null;
     constructor(route: string, routeType: ExpressRouteType) {
         this._route = route;
         this._routeType = routeType;
@@ -24,6 +27,10 @@ export class ExpressRoute {
 
     get routeType(): ExpressRouteType {
         return this._routeType;
+    }
+
+    resolvePlattform(plattform: string): any | null {
+        return ResolvePlattform(plattform);
     }
 
     handleRequest = (_req: express.Request, _res: express.Response, _next: express.NextFunction) => {
@@ -86,14 +93,14 @@ export abstract class ExpressRouter extends ExpressRoutingAddon {
 
     abstract createRoutes(): void;
 
-    protected initializeExtensions(app: any, adapter: string): any {
+    protected initializeExtensions(app: any, adapter: string, dirname: string): any {
         const extensions = config.get("extensions") as any;
         for (const extension of extensions[adapter]) {
-            const extClass = require(`./extensions/${extension}`);
-            if (!extClass) { break; }
-            const extensionClass = new extClass() as ExpressRouter;
-            app.use(extensionClass.path, extensionClass.app);
-        }
+                const extClass = require(`${dirname}/extensions/${extension}`);
+                if (!extClass) { break; }
+                const extensionClass = new extClass() as ExpressRouter;
+                app.use(extensionClass.path, extensionClass.app);
+            }
         return app;
     }
 
@@ -110,7 +117,7 @@ export abstract class ExpressApplication extends ExpressRoutingAddon {
 
     constructor() {
         super();
-        this._port = process.env.PORT || 3030;
+        this._port = process.env.PORT || 4040;
     }
 
     abstract createRoutes(): void;

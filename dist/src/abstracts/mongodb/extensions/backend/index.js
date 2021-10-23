@@ -1,15 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../src/abstracts/express/index");
-// class Api extends ExpressRoute {
-//     constructor() {
-//         super("/", ExpressRouteType.GET);
-//     }
-//     handleRequest = (_req: express.Request, _res: express.Response, _next: express.NextFunction) => {
-//         makeResponse(_res, 200, "athaeck-mongodb-api");
-//     }
-// }
-class MongodbApi extends index_1.ExpressRouter {
+const _1 = require("");
+class User extends _1.ExpressRoute {
+    _collection;
+    constructor() {
+        super("/get/user", _1.ExpressRouteType.GET);
+    }
+    handleRequest = (_req, _res, _next) => {
+        // const user:
+        (0, _1.makeResponse)(_res, 200, {});
+    };
+}
+class BackendData extends _1.ExpressRouter {
     constructor() {
         super("/mongodb", "mongodb");
         this.createRoutes();
@@ -18,7 +20,7 @@ class MongodbApi extends index_1.ExpressRouter {
     }
     createRoutes() {
         const classes = [
-        // Api
+        // User
         ];
         if (classes.length === 0) {
             return;
@@ -28,5 +30,5 @@ class MongodbApi extends index_1.ExpressRouter {
         }
     }
 }
-module.exports = MongodbApi;
+module.exports = BackendData;
 //# sourceMappingURL=index.js.map

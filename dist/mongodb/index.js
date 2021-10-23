@@ -1,24 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../src/abstracts/express/index");
-// class Api extends ExpressRoute {
-//     constructor() {
-//         super("/", ExpressRouteType.GET);
-//     }
-//     handleRequest = (_req: express.Request, _res: express.Response, _next: express.NextFunction) => {
-//         makeResponse(_res, 200, "athaeck-mongodb-api");
-//     }
-// }
 class MongodbApi extends index_1.ExpressRouter {
     constructor() {
         super("/mongodb", "mongodb");
         this.createRoutes();
         this._app = this.intializeRoutes(this._app, this._routes);
-        this._app = this.initializeExtensions(this._app, this._adapter);
+        this._app = this.initializeExtensions(this._app, this._adapter, __dirname);
     }
     createRoutes() {
         const classes = [
-        // Api
+        // User
         ];
         if (classes.length === 0) {
             return;
