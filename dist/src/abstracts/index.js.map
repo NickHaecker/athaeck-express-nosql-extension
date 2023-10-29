@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/abstracts/index.ts"],"names":[],"mappings":";;;AAAA,SAAgB,gBAAgB,CAAE,SAAiB;IAC/C,MAAM,SAAS,GAAQ,OAAO,CAAC,KAAK,SAAS,EAAE,CAAC,CAAC;IACjD,IAAI,SAAS,EAAE;QACX,OAAO,IAAI,SAAS,EAAE,CAAC;KAC1B;IACD,OAAO,IAAI,CAAC;AAChB,CAAC;AAND,4CAMC"}
