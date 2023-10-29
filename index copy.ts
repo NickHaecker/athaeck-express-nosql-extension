@@ -1,6 +1,6 @@
 import { MongoClient, Db } from "mongodb";
 import config from "config";
-import { BaseDB } from "./types";
+import { BaseDB } from "./base/db/types";
 
 class MongoDB extends BaseDB {
     private _url: string
