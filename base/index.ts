@@ -1,5 +1,6 @@
 import { BaseExpressRoute, BaseExpressRouter, ExpressRouteType } from "../athaeck-express-base/base/express";
 import { BaseDB } from "./db/types";
+import path from 'path';
 
 
 
@@ -37,22 +38,26 @@ export abstract class BaseNoSQLExpressRouterExtension extends BaseExpressRouter 
 
     protected async CreatePlattform(): Promise<void> {
         this.plattform = await this.noSQLFactory.CreateNoSQL(this.noSQLName)
+        console.log(this.plattform)
     }
 }
 
 export abstract class BaseNoSQLFactory {
     protected rootFolder: string
+    protected rootDir: string
     constructor(root: string) {
         this.rootFolder = root
     }
     public CreateNoSQL(name: string): BaseDB | undefined {
-        console.log(2222222)
-        console.log(this.rootFolder + name)
-        const NoSQL: BaseDB = require(this.rootFolder + name)
-        // console.log(NoSQL)
-        if (!NoSQL) {
+        const pathTo: string = path.join(this.rootDir + this.rootFolder + name)
+
+        console.log(pathTo)
+        const NoSQL = require(pathTo)
+        const db: BaseDB = new NoSQL()
+        if (!db) {
             return undefined
         }
-        return NoSQL
+        return db
+
     }
 }
