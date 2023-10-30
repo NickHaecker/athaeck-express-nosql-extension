@@ -1,5 +1,3 @@
-
-
 export abstract class BaseDB{
     protected config:any
     protected client:any
