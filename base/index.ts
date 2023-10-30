@@ -21,18 +21,22 @@ export abstract class BaseNoSQLExpressRouteExtension extends BaseExpressRoute {
 export abstract class BaseNoSQLExpressRouterExtension extends BaseExpressRouter {
     protected plattform: BaseDB | undefined
     protected noSQLFactory: BaseNoSQLFactory
+    abstract noSQLName: string
 
-    constructor(noSQLName: string) {
+    constructor() {
         super()
-        this.CreatePlattform(noSQLName)
+        this.Init()
+    }
+    protected async Init(): Promise<void> {
+        await this.CreatePlattform()
     }
 
     public get Plattform() {
         return this.plattform
     }
 
-    private async CreatePlattform(name: string) {
-        this.plattform = await this.noSQLFactory.CreateNoSQL(name)
+    protected async CreatePlattform(): Promise<void> {
+        this.plattform = await this.noSQLFactory.CreateNoSQL(this.noSQLName)
     }
 }
 
@@ -42,7 +46,10 @@ export abstract class BaseNoSQLFactory {
         this.rootFolder = root
     }
     public CreateNoSQL(name: string): BaseDB | undefined {
+        console.log(2222222)
+        console.log(this.rootFolder + name)
         const NoSQL: BaseDB = require(this.rootFolder + name)
+        // console.log(NoSQL)
         if (!NoSQL) {
             return undefined
         }
