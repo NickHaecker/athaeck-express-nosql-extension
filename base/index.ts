@@ -38,7 +38,6 @@ export abstract class BaseNoSQLExpressRouterExtension extends BaseExpressRouter 
 
     protected async CreatePlattform(): Promise<void> {
         this.plattform = await this.noSQLFactory.CreateNoSQL(this.noSQLName)
-        console.log(this.plattform)
     }
 }
 
