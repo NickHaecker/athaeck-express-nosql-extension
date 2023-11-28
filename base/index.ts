@@ -16,10 +16,7 @@ export abstract class BaseNoSQLExpressRouteExtension extends BaseExpressRoute {
 
   public async TakeRouter(router: BaseNoSQLExpressRouterExtension): Promise<void> {
     super.TakeRouter(router);
-
     this.db = await router.Plattform?.GetDB(this.dbName);
-
-    console.log("0000000000", this.db);
   }
 }
 
